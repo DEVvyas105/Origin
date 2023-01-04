@@ -103,7 +103,7 @@ class InitState extends State<SignUpScreen>{
                     color: Color(0xFFFFB300),
 
                   ),
-                  hintText: "Enter Your Email",
+                  labelText: "Enter Your Email",
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),
@@ -140,7 +140,7 @@ class InitState extends State<SignUpScreen>{
                     color: Color(0xFFFFB300),
 
                   ),
-                  hintText: "Enter Password",
+                  labelText: "Enter Password",
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),
@@ -182,7 +182,7 @@ class InitState extends State<SignUpScreen>{
                     color: Color(0xFFFFB300),
 
                   ),
-                  hintText: "Confirm Password",
+                  labelText: "Confirm Password",
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),

@@ -56,16 +56,19 @@ class Dashboard extends StatefulWidget
       ),
 
       drawer: Drawer(
-    backgroundColor: Colors.amber,
+
         child: ListView(
           children: [
 
             UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.amber
+                ),
                 accountName: Text('Devarsh Vyas'), accountEmail: Text ('devarshvyas02@gmail,com'),),
 
             ListTile(
               leading: const Icon(Icons.payment),
-              title: const Text(' Payment methof '),
+              title: const Text(' Payment method '),
               onTap: () {
                 Navigator.pop(context);
               },
@@ -89,7 +92,7 @@ class Dashboard extends StatefulWidget
               leading: const Icon(Icons.logout),
               title: const Text('LogOut'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen()) , (route) => false);
               },
             ),
           ],

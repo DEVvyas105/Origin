@@ -10,6 +10,8 @@ class LoginScreen extends StatefulWidget {
 class InitState extends State<LoginScreen> {
   final formkey = GlobalKey<FormState>();
 
+  bool _isObscure= false;
+
   @override
   Widget build(BuildContext context) {
     return initWidget();
@@ -26,7 +28,7 @@ class InitState extends State<LoginScreen> {
                 height: 300,
                 decoration: BoxDecoration(
                     borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(90)),
+                    BorderRadius.only(bottomLeft: Radius.circular(90)),
                     color: Colors.amber,
                     gradient: LinearGradient(
                         colors: [
@@ -82,7 +84,7 @@ class InitState extends State<LoginScreen> {
                         Icons.email_rounded,
                         color: Color(0xFFFFB300),
                       ),
-                      hintText: "Enter Email",
+                      labelText: "Enter Email",
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
                     ),
@@ -111,30 +113,47 @@ class InitState extends State<LoginScreen> {
                   ),
                   alignment: Alignment.center,
                   child: TextFormField(
-                      obscureText: true,
+                      obscureText: _isObscure,
                       cursorColor: Color(0xFFFFB300),
                       decoration: InputDecoration(
-                        icon: Icon(
-                          Icons.vpn_key_rounded,
-                          color: Color(0xFFFFB300),
-                        ),
-                        hintText: "Enter Passwords",
-                        enabledBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                      ),
-                      validator: (value) {
-                        RegExp regex = RegExp(
-                            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-                        if (value!.isEmpty) {
-                          return 'Please enter password';
-                        } else {
-                          if (!regex.hasMatch(value)) {
-                            return 'Enter valid password';
-                          } else {
-                            return null;
-                          }
+                          icon: Icon(
+                            Icons.lock,
+                            color: Color(0xFFFFB300),
+                          ),
+
+                            suffixIcon: IconButton(
+
+                                focusColor: Color(0xFFFFB300),
+                              
+                            icon: Icon(_isObscure ? Icons.visibility :Icons.visibility_off),
+                            color: Colors.amber,
+                            onPressed: () {
+                            setState(() { //refresh UI
+                            if(_isObscure){ //if passenable == true, make it false
+                            _isObscure = false;
+                            }else{
+                            _isObscure = true; //if passenable == false, make it true
+                            }
+                            });
+
                         }
-                      })),
+
+                      )
+            ),
+                validator: (value) {
+                RegExp regex = RegExp(
+                r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                if (value!.isEmpty) {
+                return 'Please enter password';
+                } else {
+                if (!regex.hasMatch(value)) {
+                return 'Enter valid password';
+                } else {
+                return null;
+                }
+                }}
+                )
+                ),
               Container(
                 margin: EdgeInsets.only(top: 20, right: 20),
                 alignment: Alignment.centerRight,
